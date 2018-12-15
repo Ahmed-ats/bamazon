@@ -28,3 +28,4 @@ VALUES ("pen", "office", 1.20, 50),
  ("T-shirt", "clothing", 23.58,11);
 
 SELECT * FROM products;
+SELECT MAX(item_id) FROM products;
