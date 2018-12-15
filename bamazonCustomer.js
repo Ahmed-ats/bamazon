@@ -51,7 +51,7 @@ var connection = mysql.createConnection({
                 UserItem()
               }
               else{
-                  console.log("Thank you for coming and come again please!");
+                  console.log("Thank you for coming, come again please!");
                     connection.end()
               }
 
@@ -67,7 +67,7 @@ function UserItem(){
             name: "productId",
             message: "What is the product ID?", 
             validate: function(userInput){
-                if (Number(userInput < 11) ) {
+                if (Number(userInput) < 11) {
                     return true
                 }
                 else {
@@ -90,7 +90,8 @@ function UserItem(){
         }
     ])
         .then(function (ansewrs) {
-          
+           
+        
             connection.query("SELECT stock_quantity FROM products WHERE item_id= ? ", [ansewrs.productId], function (err, res) {
                 
                 if (err) throw err;
@@ -155,14 +156,14 @@ function UserItem(){
                             type: "list",
                             name: "decision",
                             message: "Would you like to make another purchase?",
-                            choices: ["Yes", "Yes Show products again", "No"]
+                            choices: ["Yes", "Yes, Show products again", "No"]
                         }
                     ])
                         .then(function (ansewrs) {
                             if (ansewrs.decision === "Yes") {
                                 UserItem()
                             }
-                            else if (ansewrs.decision === "Yes Show products again"){
+                            else if (ansewrs.decision === "Yes, Show products again"){
                                 display()
                             }
                             else {
